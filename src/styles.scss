@@ -1,1 +1,161 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./assets/scss/variables.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: $font;
+}
+
+body {
+  background: $bg;
+}
+
+.splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: $softBlue;
+  color: $white;
+  text-align: center;
+  line-height: 90vh;
+}
+
+.splash.hidden {
+  opacity: 0;
+  transition: all 0.5s;
+  z-index: -10;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+header {
+  padding: 1rem;
+  font-size: 2rem;
+  background: $white;
+}
+
+.container {
+  padding: 2rem 3rem;
+}
+
+.shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.radius {
+  border-radius: 0.6rem;
+}
+
+.languajes {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  padding-bottom: 0;
+  span {
+    color: $blue;
+    border-bottom: 3px solid $blue;
+    padding-bottom: 0.6rem;
+  }
+}
+
+.container-translate {
+  display: flex;
+  justify-content: center;
+  height: 320px;
+}
+
+.padding-text {
+  padding: 1.5rem;
+  width: 50%;
+}
+
+.bg-blue {
+  background: $blue;
+  height: auto;
+}
+
+.mt {
+  margin-top: 2rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: $black;
+  font-size: 1rem;
+}
+
+// Texts colors
+.text-blue {
+  color: $blue;
+}
+
+.text-red {
+  color: $red;
+}
+
+.text-green {
+  color: $green;
+}
+
+.text-yellow {
+  color: $yellow;
+}
+
+.text-gray {
+  color: $gray;
+}
+
+.text-white {
+  color: $white;
+}
+
+.ml {
+  margin-left: 0.5rem;
+}
+
+.bx {
+  font-size: 1.5rem;
+}
+
+// Responsive
+
+@media only screen and (max-width: 610px) {
+  .container-translate {
+    flex-direction: column;
+    height: auto;
+  }
+  .padding-text {
+    width: 100%;
+  }
+  textarea {
+    width: 90%;
+  }
+  .controls {
+    justify-content: space-around;
+  }
+  .bg-blue {
+    width: 89%;
+  }
+}
