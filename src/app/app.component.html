@@ -31,4 +31,8 @@
       {{ resultText }}
     </div>
   </div>
+  <button class="radius" [disabled]="text.length === 0" (click)="translate()">
+    Translate
+  </button>
 </div>
+<ngx-spinner type="fire"></ngx-spinner>
