@@ -26,7 +26,7 @@ export class AlertService {
   public info() {
     Swal.fire({
       title: 'Informacion',
-      text: 'Este aplicativo valida que se escriba de manera correcta el presente simple, si esta escrito correctamente se traduce el texto, de lo contario te notifica que hay un error',
+      text: 'Este aplicativo valida que se escriba de manera correcta el verbo to be en su forma afirmativa, si esta escrito correctamente se traduce el texto, de lo contario te notifica que hay un error',
       icon: 'info',
       confirmButtonText: 'Aceptar',
       showCancelButton: false,
