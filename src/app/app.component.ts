@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PronounTarget } from './models/pronoun-target';
 import { Pronouns } from './models/pronouns';
 import { AlertService } from './services/alert.service';
 import { TranslateService } from './services/translate.service';
@@ -13,7 +12,7 @@ import { verbs } from './utils/verb';
 export class AppComponent implements OnInit {
   isHiddenSplash: boolean = false;
   text: string = '';
-  resultText: string = 'Here you look the result';
+  resultText: string = 'Here you can look the result';
 
   constructor(
     private _alert: AlertService,
@@ -39,8 +38,8 @@ export class AppComponent implements OnInit {
       (result) => {
         this.resultText = result.responseData?.translatedText;
       },
-      (badRequest) => {
-        console.log(badRequest);
+      () => {
+        this._alert.error();
       }
     );
   }
@@ -79,5 +78,8 @@ export class AppComponent implements OnInit {
       if (!!verb) return verb[0];
       return '';
     }
+  }
+  showInfoAlert(): void {
+    this._alert.info();
   }
 }

@@ -23,7 +23,10 @@
         maxlength="300"
       ></textarea>
       <div class="controls">
-        <i class="bx bxs-microphone text-gray"></i>
+        <i
+          (click)="showInfoAlert()"
+          class="bx bxs-info-circle text-gray pointer"
+        ></i>
         <span class="text-gray">{{ text.length }}/300</span>
       </div>
     </div>
