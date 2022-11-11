@@ -49,19 +49,35 @@ export class AppComponent implements OnInit {
     if (Object.keys(pronoun).length === 0) return false;
     const verb = this.findVerb(pronoun);
     const subject = pronoun?.subjects ?? [];
-    return this.isEqualSetences(values[0] + values[1], subject[0] + verb);
+    return this.isEqualSetences(
+      this.getOriginalSetence(values, pronoun.isShortForm ?? false),
+      subject[0] + verb
+    );
   }
 
   isEqualSetences(original: string, founded: string) {
-    return original.toLowerCase() === founded.toLowerCase();
+    return original.toLocaleUpperCase() === founded.toLocaleUpperCase();
+  }
+
+  getOriginalSetence(values: string[], isShortForm: boolean): string {
+    return isShortForm ? values[0] : values[0] + values[1];
   }
 
   findPronoun(pronounValue: string): Pronouns {
+    const symbol = '’';
+    const isShortForm: number = pronounValue.indexOf(symbol);
+    if (isShortForm > 0) pronounValue = pronounValue.split(symbol)[0];
     return pronouns.reduce((acc, pronoun) => {
-      if (pronoun.subjects?.includes(pronounValue))
+      if (
+        pronoun.subjects?.some(
+          (subject) =>
+            subject.toLocaleLowerCase() === pronounValue.toLocaleLowerCase()
+        )
+      )
         acc = {
           subjects: [pronounValue],
           isSingular: pronoun.isSingular,
+          isShortForm: isShortForm > 0,
         };
       return acc;
     }, {});
@@ -70,12 +86,13 @@ export class AppComponent implements OnInit {
   findVerb(pronoun: Pronouns): string {
     const I = 'I';
     const pronounValue = pronoun.subjects ?? [];
-    if (pronounValue[0].toLowerCase() === I.toLowerCase()) return 'am';
+    if (pronounValue[0].toLowerCase() === I.toLowerCase())
+      return pronoun.isShortForm ? '’m' : 'am';
     else {
       const verb = verbs.find(
         (verb) => verb.isSingular === pronoun.isSingular
       )?.subjects;
-      if (!!verb) return verb[0];
+      if (!!verb) return verb[pronoun.isShortForm ? 1 : 0];
       return '';
     }
   }

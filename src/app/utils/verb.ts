@@ -1,6 +1,6 @@
 import { Pronouns } from '../models/pronouns';
 
 export const verbs: Pronouns[] = [
-  { subjects: ['is'], isSingular: true },
-  { subjects: ['are'], isSingular: false },
+  { subjects: ['is', '’s'], isSingular: true },
+  { subjects: ['are', '’re'], isSingular: false },
 ];
